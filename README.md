@@ -3,4 +3,8 @@
 
 Todo:
 
-- [ ] nh
+- [ ] Create checksum file for the dataset
+- [ ] Create data visualizer
+- [x] Upload to zenodo
+- [ ] Add references
+- [ ] 
