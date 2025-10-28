@@ -74,7 +74,7 @@ if __name__ == "__main__":
     tib = TemporalInformationBottleneck(entropy_threshold=0.12, sampling_rate=5)
     
     # Path to a video from your evd-benchmark fork
-    video_path = "path_to_your_video.mp4"  # <-- replace with actual video path
+    video_path = "https://github.com/NivedhaVijayan/EVD-benchmark/blob/main/part2(split-video.com).mp4"  # <-- replace with actual video path
     output_dir = "keyframes_output"
 
     # Extract keyframes
