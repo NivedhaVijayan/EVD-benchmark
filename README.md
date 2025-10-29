@@ -50,4 +50,4 @@ Access: Interested researchers can request access by contacting the authors.
 Metadata CSV available in zenodo "https://zenodo.org/records/14036059?preview=1&token=eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjFhYzEwNWJjLWM3ZjAtNDQ3YS05MjVlLWJmNjBiM2JiYzJjOSIsImRhdGEiOnt9LCJyYW5kb20iOiI3YjY3MTc2NjMxZTY5YmY5Mzk1NzgwZmRmNDY4YzU3NyJ9.6UNbgftncY4jDkoK_OCt-WS_9Ph5iiB5N8K1lAsQHKwD0RSOmUB2qZ7huptLUw90S69YteDvXuC-ysjoS0XQ9g": The repository includes a CSV listing the original video links, along with course and lecture details (Discipline, Subject ID, Subject Name, Institute, Type, Coordinator Name, Unique Display Names). 
 
 **Note:** Full-scale reproduction of EVUD-2M requires downloading videos from the links in the CSV and running the TIB & SSD pipeline provided in this repository.
-Note: The full EVUD-2M dataset (~2 million frames) is too large to host on GitHub or Zenodo. A CSV with links to original NPTEL/ClassX videos is included. Full dataset access is available on request.
+The full EVUD-2M dataset (~2 million frames) is too large to host on GitHub or Zenodo. A CSV with links to original NPTEL/ClassX videos is included. Full dataset access is available on request.
