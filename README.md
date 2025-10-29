@@ -42,3 +42,18 @@ Hardware: Dual NVIDIA RTX 4090 GPUs, 48GB VRAM, 128GB RAM, 24-core CPU.
 **Reproducibility and Scalability**
 
 This framework allows efficient processing of large-scale educational video corpora while maintaining high-quality annotations. The EVUD-2M benchmark establishes a reproducible foundation for future research in educational video understanding.
+EVUD-2M Benchmark Details
+
+**The EVUD-2M benchmark includes:**
+
+EVUD-2M Benchmark
+
+The EVUD-2M benchmark was created by extracting keyframes from a large collection of educational videos (~2 million frames).
+
+Size Note: The dataset is too large to host on GitHub or Zenodo.
+
+Access: Interested researchers can request access by contacting the authors.
+
+Metadata CSV: The repository includes a CSV listing the original video links, along with course and lecture details (Discipline, Subject ID, Subject Name, Institute, Type, Coordinator Name, Unique Display Names).
+
+Full-scale reproduction of EVUD-2M requires downloading videos from the links in the CSV and running the TIB & SSD pipeline provided in this repository.
