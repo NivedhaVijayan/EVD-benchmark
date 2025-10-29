@@ -15,14 +15,7 @@ Features:
 4. Inline visualization when run in Jupyter Notebook.
 ---------------------------------------------------------
 """
-"""
-Temporal Information Bottleneck (TIB) - Full Algorithm 1 Implementation
-------------------------------------------------------------------------
-Extracts pedagogically significant keyframes from educational videos
-based on structural + content saliency and domain-informed pruning.
 
-Author: <Your Name>
-"""
 
 import cv2
 import numpy as np
