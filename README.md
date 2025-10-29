@@ -1,9 +1,9 @@
-LEARNet Framework and EVUD-2M Benchmark
-Overview
+**LEARNet Framework and EVUD-2M Benchmark**
+**Overview**
 
 The LEARNet architecture provides an end-to-end system for large-scale educational video understanding, combining the Temporal Information Bottleneck (TIB) and the Hierarchical Educational Scene Parser (SSD) into a unified workflow. This system has been leveraged to construct the EVUD-2M benchmark, a large-scale, fine-grained dataset of educational videos.
 
-Workflow
+**Workflow**
 
 Temporal Information Bottleneck (TIB):
 
@@ -27,7 +27,7 @@ Spatial semantic richness: Region-level annotations for slides, diagrams, equati
 
 Structural diversity: Covers various instructional formats ensuring broad coverage of educational scenarios.
 
-Implementation Details
+**Implementation Details**
 
 Language & Frameworks: Python 3.9, PyTorch 2.1.0
 
@@ -39,6 +39,6 @@ Training & Validation: 5-fold cross-validation with 80/20 train-test split, Adam
 
 Hardware: Dual NVIDIA RTX 4090 GPUs, 48GB VRAM, 128GB RAM, 24-core CPU.
 
-Reproducibility and Scalability
+**Reproducibility and Scalability**
 
 This framework allows efficient processing of large-scale educational video corpora while maintaining high-quality annotations. The EVUD-2M benchmark establishes a reproducible foundation for future research in educational video understanding.
