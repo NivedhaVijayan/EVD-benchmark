@@ -1,46 +1,44 @@
-# EVUD-benchmark
-NPTEL Video Extraction Benchmark (LEARNet)
+LEARNet Framework and EVUD-2M Benchmark
+Overview
 
-This repository provides a benchmark-ready implementation of the NPTEL Video Extraction Module, a foundational component of the LEARNet and EVUD-2M educational video understanding pipelines. The code automates large-scale data collection from the NPTEL repository, enabling reproducible benchmarking for instructional video analysis.
+The LEARNet architecture provides an end-to-end system for large-scale educational video understanding, combining the Temporal Information Bottleneck (TIB) and the Hierarchical Educational Scene Parser (SSD) into a unified workflow. This system has been leveraged to construct the EVUD-2M benchmark, a large-scale, fine-grained dataset of educational videos.
 
-🔍 Overview
+Workflow
 
-The pipeline performs systematic sampling, metadata cleaning, and automated video retrieval from educational course repositories. It generates a balanced and standardized dataset that supports tasks such as:
+Temporal Information Bottleneck (TIB):
 
-Educational video segmentation
+Analyzes raw video sequences to identify pedagogically significant keyframes.
 
-Keyframe and semantic content extraction
+Reduces data volume by over 70%, selecting ~949,000 keyframes from 2 million frames.
 
-Visual Table of Contents (ToC) generation
+Hierarchical Educational Scene Parser (SSD with RCVN):
 
-⚙️ Features
+Transforms curated keyframes into semantically enriched educational content.
 
-Balanced Sampling: Selects one-fourth of courses per discipline to ensure domain diversity.
+Uses a Relational Verification Network (RCVN) to propagate fine-grained region-level annotations efficiently.
 
-Automated Web Extraction: Configures Selenium and ChromeDriver to navigate and scrape course video data.
+Ensures high annotation consistency across the dataset.
 
-Metadata Normalization: Cleans, merges, and exports structured CSV files for downstream LEARNet modules.
+EVUD-2M Benchmark Highlights
 
-Benchmark-Ready: Designed for reproducible and scalable dataset creation across educational video domains.
+Temporal coherence: Keyframes capture the most pedagogically informative moments.
 
-🧩 Pipeline Summary
+Spatial semantic richness: Region-level annotations for slides, diagrams, equations, and handwritten content.
 
-Load Metadata: Reads courses.csv containing all NPTEL course information.
+Structural diversity: Covers various instructional formats ensuring broad coverage of educational scenarios.
 
-Sample Courses: Randomly selects ¼ of courses per discipline for balanced coverage.
+Implementation Details
 
-Set Up Browser Automation: Installs and configures ChromeDriver for Selenium-based scraping.
+Language & Frameworks: Python 3.9, PyTorch 2.1.0
 
-Extract Video Data: Navigates to course pages, captures URLs, titles, and video metadata.
+Integrated Pipeline: TIB → SSD → Scene Graph → Annotated Dataset
 
-Export Results: Outputs cleaned dataset (final_selected_rows.csv) for benchmark use.
+Relational Verification Network: Batch normalization ensures stable learning across diverse educational content types.
 
-📊 Applications
+Training & Validation: 5-fold cross-validation with 80/20 train-test split, Adam optimizer (learning rate = 0.001, batch size = 32).
 
-LEARNet: Learning Entropy-Aware Representation Network
+Hardware: Dual NVIDIA RTX 4090 GPUs, 48GB VRAM, 128GB RAM, 24-core CPU.
 
-EVUD-2M Benchmark Dataset
+Reproducibility and Scalability
 
-Automated Table of Content generation
-
-Educational multimedia retrieval
+This framework allows efficient processing of large-scale educational video corpora while maintaining high-quality annotations. The EVUD-2M benchmark establishes a reproducible foundation for future research in educational video understanding.
