@@ -11,19 +11,36 @@ using reference embeddings and similarity-based detection. It performs:
 3. Semantic graph formation and annotation: Construct a scene graph
    and assign labels based on similarity to reference components.
 
-Author: <Your Name>
-Contributor: LEARNet / EVD-Benchmark
+"""
+
+"""
+Spatial-Semantic Decoder (SSD) Module with RCVN
+-----------------------------------------------
+Description:
+The Spatial-Semantic Decoder identifies educational components in a keyframe
+using reference embeddings and similarity-based detection. It performs:
+
+1. Open-world component proposal: Detect candidate regions by comparing
+   patch embeddings of the test frame with reference embeddings.
+2. Pixel-accurate component isolation: Refine detected regions via segmentation.
+3. Semantic graph formation and annotation: Construct a scene graph
+   and assign labels based on similarity to reference components.
+4. Relational Coherence Verification (RCVN): Trainable network to embed
+   components and enforce relational consistency between educational elements.
 """
 
 import cv2
 import numpy as np
 from typing import List, Tuple, Dict
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
+# -------------------------------
 # Placeholder Encoder and Embedder
-# Replace with actual model (e.g., CNN, CLIP, OWL-ViT)
+# -------------------------------
 def encode_image(image: np.ndarray) -> np.ndarray:
-    """Encode an image into a feature embedding vector."""
-    # Flatten and normalize as dummy embedding
+    """Encode an image into a feature embedding vector (dummy)."""
     embedding = cv2.resize(image, (32, 32)).flatten()
     embedding = embedding / np.linalg.norm(embedding + 1e-8)
     return embedding
@@ -41,7 +58,6 @@ def refine_segmentation(image: np.ndarray, bbox: Tuple[int,int,int,int]) -> np.n
 
 def construct_scene_graph(M: List[Dict]) -> List[Dict]:
     """Construct a scene graph from masked components."""
-    # Each entry: {'bbox': bbox, 'mask': mask, 'label': None}
     G = []
     for m in M:
         G.append({'bbox': m['bbox'], 'mask': m['mask'], 'label': None})
@@ -51,14 +67,36 @@ def initial_label(region: np.ndarray) -> str:
     """Assign a default label if no reference match."""
     return "Unknown"
 
+# -------------------------------
+# Relational Coherence / Verification Network (RCVN)
+# -------------------------------
+class RelationalVerificationNet(nn.Module):
+    """
+    Trainable network to embed components for relational coherence.
+    Optimized with Triplet Loss or metric learning to enforce
+    semantic similarity among pedagogically related components.
+    """
+    def __init__(self, input_dim=1024, embedding_dim=256):
+        super().__init__()
+        self.fc1 = nn.Linear(input_dim, 512)
+        self.fc2 = nn.Linear(512, embedding_dim)
 
+    def forward(self, x):
+        x = F.relu(self.fc1(x))
+        x = F.normalize(self.fc2(x), dim=-1)
+        return x
+
+# -------------------------------
+# SSD Core
+# -------------------------------
 class SpatialSemanticDecoder:
-    """Spatial-Semantic Decoder for educational keyframes."""
+    """Spatial-Semantic Decoder for educational keyframes with RCVN."""
 
     def __init__(self, detection_threshold: float = 0.7, similarity_threshold: float = 0.75):
         self.detection_threshold = detection_threshold
         self.similarity_threshold = similarity_threshold
         self.reference_db = []  # Stores tuples (embedding, label)
+        self.rcvn = RelationalVerificationNet()  # Trainable relational verification network
 
     def build_reference_db(self, reference_set: List[Tuple[np.ndarray, str]]):
         """Encode reference regions and store in the database."""
@@ -69,7 +107,6 @@ class SpatialSemanticDecoder:
     def detect_components(self, test_frame: np.ndarray) -> List[Tuple[int,int,int,int]]:
         """Detect bounding boxes for candidate components in test frame."""
         candidate_bboxes = []
-        # For simplicity, consider grid patches
         h, w, _ = test_frame.shape
         patch_size = 64
         for y in range(0, h, patch_size):
@@ -112,19 +149,18 @@ class SpatialSemanticDecoder:
         return G
 
     def process_keyframe(self, test_frame: np.ndarray, reference_set: List[Tuple[np.ndarray,str]]):
-        """End-to-end processing for a single keyframe."""
+        """End-to-end processing for a single keyframe with RCVN available for training."""
         self.build_reference_db(reference_set)
         bboxes = self.detect_components(test_frame)
         M = self.pixel_accurate_isolation(test_frame, bboxes)
         G = self.annotate_scene_graph(test_frame, M)
         return G
 
-
 # -------------------------------
 # Example usage
 # -------------------------------
 if __name__ == "__main__":
-    # Dummy test frame
+    # Dummy test frame (could be output of TIB)
     test_frame = np.zeros((256,256,3), dtype=np.uint8)
 
     # Dummy reference regions with labels
@@ -135,6 +171,9 @@ if __name__ == "__main__":
     decoder = SpatialSemanticDecoder(detection_threshold=0.7, similarity_threshold=0.75)
     scene_graph = decoder.process_keyframe(test_frame, reference_set)
 
-    print("Detected Components in Scene Graph and annoataions:")
+    print("Detected Components in Scene Graph and Annotations:")
     for comp in scene_graph:
         print(comp)
+
+    # Access RCVN network for training
+    print("RCVN network ready for training:", decoder.rcvn)
