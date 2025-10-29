@@ -60,7 +60,7 @@ This document provides detailed information on all datasets, repositories, and e
 
 ### 6. Roboflow Educational Image Datasets
 
-* **Description:** Platform for curated and preprocessed computer vision datasets, including educational figures, diagrams, and table images, suitable for training detection models.
+* **Description:** Platform for curated and preprocessed computer vision datasets, including educational figures, diagrams, and table images, suitable for training detection models. “From Roboflow, we leveraged curated datasets covering key domains such as table detection, figure and chart recognition, workflow and activity diagrams, and other educational diagrammatic visuals to enhance EVUD-2M’s graphical content coverage"
 * **Access:** [https://roboflow.com/](https://roboflow.com/)
 * **Citation:**
   Roboflow Inc., *Roboflow Datasets and Tools for Computer Vision*, 2020–2025.
